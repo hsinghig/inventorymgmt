@@ -12,7 +12,11 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = conn
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)    
-    app.register_blueprint(dashboard_blueprint, url_prefix='/dashboard')
+    #app.register_blueprint(dashboard_blueprint, url_prefix='/dashboard')
+
+    @app.route("/")
+    def home():
+        return render_template("home.html")
 
     @app.errorhandler(404)  
     def page_not_found(e):
